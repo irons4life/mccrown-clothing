@@ -1,13 +1,11 @@
-import { useState,useEffect } from "react";
+import { useState } from "react";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component"
 
 import {createAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from '../../utils/firebase/firebase.utils';
 
-
 import "./sign-up-form.styles.scss"
-
 
 const defaultFormFields={
     displayName:"",
@@ -47,10 +45,8 @@ const SignUpForm = ()=>{
                 alert('Cannot create user. Email already in use')
             }
             console.log(error.message, error)
-        }
-        
-
-}
+        }    
+    }
     return(
         <div className="sign-up-container">
             <h2>Don't have an account?</h2>
@@ -96,7 +92,6 @@ const SignUpForm = ()=>{
             </form>
         </div>
         )
-    
 }
     
 export default SignUpForm;
