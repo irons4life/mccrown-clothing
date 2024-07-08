@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component"
 
@@ -21,25 +20,23 @@ const SignInForm = ()=>{
     const [formFields,setFormFields] = useState(defaultFormFields);
     const {email, password} = formFields;
 
-    console.log(formFields)
-
     const resetFormFields = () =>{
         setFormFields(defaultFormFields)
     }
 
     const signInWithGoogle = async () => {
-        const {user} = await signInWithGooglePopup();
-            await createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
+       
         }
     
     const handleSubmit= async (e)=>{
         e.preventDefault()
         
         try{
-            const response= await signInAuthUserWithEmailAndPassword(email,password)
-            console.log(response)
+            const {user}= await signInAuthUserWithEmailAndPassword(email,password)
             resetFormFields()
         }
+        
         catch(error){
             switch(error.code){
                 case 'auth/wrong-password':
@@ -87,7 +84,7 @@ const SignInForm = ()=>{
                     />
                 <div className="buttons-container">
                     <Button type="submit" >Sign In</Button>
-                    <Button buttonType="button" onClick={signInWithGoogle}>Google sign in</Button>
+                    <Button buttonType="google" type="button" onClick={signInWithGoogle}>sign in with google</Button>
                 </div>
                  
             </form>
